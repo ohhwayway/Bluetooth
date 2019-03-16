@@ -2,6 +2,7 @@ import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -30,6 +31,8 @@ public class Connect {
 	
 	private static float Yco;
 	private static float Xco;
+	private static float Click;
+	private static float Right;
 	
 	static Dimension screenS = Toolkit.getDefaultToolkit().getScreenSize();
 	private static int ScreenW = (int) screenS.getWidth();
@@ -73,7 +76,7 @@ public class Connect {
 			
 				
 				
-			ss = new ServerSocket(1038);
+			ss = new ServerSocket(4006);
 			int count = 0;
 			while(true) {
 			
@@ -91,30 +94,44 @@ public class Connect {
 			count++;
 //			System.out.println(count);
 			
-			if (count % 2 == 0) {//checks if its divisible by 2 if it is then its the Y value, if not the X value 
-				Yco = new Float(messageX);
-				System.out.println("Y: " + Yco);
-				if(Yco >= 1) {
-					screenH = (int) (screenH - Yco); //moves mouse up by 2 pixels
-					Move(screenW,screenH);
-					System.out.println(screenH);
-				}else if(Yco <= -1){
-					screenH = (int) (screenH - Yco); //moves down by 2 pixels
-					Move(screenW,screenH);
-					System.out.println(screenH);
+			 if (count % 4 == 3) {
+				Click = new Float(messageX);
+
+				System.out.println("Click: " + Click);
+				if(Click > 0 ) {
+					LeftC();
 				}
 				
-			}else {
+			}else if ( count % 4 == 1) {
 				Xco = new Float(messageX);
 				System.out.println("X: " + Xco);
 				if(Xco >= 1) {
 					screenW = (int) (screenW - Xco); 
 					Move(screenW,screenH);
-					System.out.println(screenW);
+//					System.out.println(screenW);
 				}else if ( Xco <= -1) {
 					screenW = (int) (screenW - Xco); 
 					Move(screenW,screenH);
-					System.out.println(screenW);
+//					System.out.println(screenW);
+				}
+			}else if (count % 4 == 2) {
+				Yco = new Float(messageX);
+				System.out.println("Y: " + Yco);
+				if(Yco >= 1) {
+					screenH = (int) (screenH - Yco); //moves mouse up by 2 pixels
+					Move(screenW,screenH);
+//					System.out.println(screenH);
+				}else if(Yco <= -1){
+					screenH = (int) (screenH - Yco); //moves down by 2 pixels
+					Move(screenW,screenH);
+//					System.out.println(screenH);
+				}
+				
+			}else if (count % 4 == 0 ) {
+				Right = new Float(messageX);
+				if(Right > 0) {
+				System.out.println("Right: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + Right);
+				RightC();
 				}
 			}
 			
@@ -143,6 +160,29 @@ public class Connect {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	
+	public static void LeftC() {
+		try {
+			Robot robot = new Robot();
+			robot.mousePress(InputEvent.BUTTON1_MASK);
+			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void RightC() {
+		try {
+			Robot robot = new Robot();
+			robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
+			robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
