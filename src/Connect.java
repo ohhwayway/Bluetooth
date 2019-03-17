@@ -108,7 +108,7 @@ public class Connect {
 				if(Xco >= 1) {
 					screenW = (int) (screenW - Xco); 
 					Move(screenW,screenH);
-//					System.out.println(screenW);
+
 				}else if ( Xco <= -1) {
 					screenW = (int) (screenW - Xco); 
 					Move(screenW,screenH);
