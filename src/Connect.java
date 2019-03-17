@@ -92,7 +92,7 @@ public class Connect {
 
 
 			count++;
-//			System.out.println(count);
+
 			
 			 if (count % 4 == 3) {
 				Click = new Float(messageX);
