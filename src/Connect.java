@@ -75,7 +75,7 @@ public class Connect {
 			
 
 
-			count++;
+			count++;//counts
 
 			
 			 if (count % 4 == 3) {
