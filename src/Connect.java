@@ -51,27 +51,11 @@ public class Connect {
 	public static void main (String [] args) throws IOException {
 		
 		
-		
-		
-//		try {
-//			Robot robot = new Robot();
-//			robot.mouseMove(screenW, screenH);
-//		} catch (AWTException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		
-		
-//		ServerSocket socket = new ServerSocket(4000);
-//		Socket clientSocket = socket.accept();
-//		DataInputStream DIS = new DataInputStream(clientSocket.getInputStream());
-//		msg_recieved = DIS.readUTF();
-//		clientSocket.close();
-//		socket.close();
+		float blue = KG((float) 100.0);
+		System.out.println(blue);
 		
 		
 		
-	
 		try {
 			
 				
@@ -185,45 +169,14 @@ public class Connect {
 		
 	}
 	
-	
-	
-	
-	
-	public static void send() {
-		
-		try {
-			while(true) {
-				
-				
-			ss = new ServerSocket(5015);
-			
-			System.out.println("Please Work!");
-			s = ss.accept();
-			
-			isr = new InputStreamReader(s.getInputStream());
-			br = new BufferedReader(isr);
-			messageX = br.readLine();
-//			numberofString2 = br.readLine();
-			System.out.println("Please Work!");
-			System.out.println(messageX);
-//			System.out.println(numberofString2);
-			
-			isr.close();
-			br.close();
-			ss.close();
-			s.close();
-			
-			}
-		 
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static float KG(Float s ) {
+		float s1 = s;
+		float fin = (float) (s1 *2.205);
+		return fin;
 		
 	}
-	 
 	
+
 	
 
 }
